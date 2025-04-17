@@ -16,7 +16,6 @@ class Product extends Model
     public $incrementing = true;
     // timestamps(created_at, updated_at)
     public $timestamps = true;
-
     // fillable fields
     protected $fillable = [
         'name',
@@ -24,4 +23,14 @@ class Product extends Model
         'price',
         'quantity',
     ];
+
+    public static function create(array $validated)
+    {
+        return static::query()->create($validated);
+    }
+
+    public static function findOrFail(object|string|null $route)
+    {
+        return static::query()->findOrFail($route);
+    }
 }
